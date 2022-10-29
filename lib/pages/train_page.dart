@@ -1,5 +1,5 @@
+import 'package:Travami/pages/payment.dart';
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class TrainPage extends StatefulWidget {
   @override
@@ -14,13 +14,16 @@ class _TrainPageState extends State<TrainPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('訂購火車票'),
+        title: const Text('訂購火車票'),
       ),
       body: Column(
         children: [
           Row(
             children: [
-              Text('從：', style: TextStyle(fontSize: 20.0),),
+              const Text(
+                '從：',
+                style: TextStyle(fontSize: 20.0),
+              ),
               DropdownButton(
                 style: const TextStyle(fontSize: 20.0, color: Colors.black),
                 value: from,
@@ -38,12 +41,16 @@ class _TrainPageState extends State<TrainPage> {
           ),
           Row(
             children: [
-              Text('到：', style: TextStyle(fontSize: 20.0),),
+              const Text(
+                '到：',
+                style: TextStyle(fontSize: 20.0),
+              ),
               DropdownButton(
                 style: const TextStyle(fontSize: 20.0, color: Colors.black),
                 value: to,
                 items: const [
-                  DropdownMenuItem(value: 'neuschwanstein', child: Text('新天鵝堡')),
+                  DropdownMenuItem(
+                      value: 'neuschwanstein', child: Text('新天鵝堡')),
                 ],
                 onChanged: (String? value) {
                   if (value == null) return;
@@ -56,11 +63,13 @@ class _TrainPageState extends State<TrainPage> {
           ),
           ElevatedButton(
             onPressed: () async {
-              final Uri _url =
-                  Uri.parse('https://buy.stripe.com/test_7sIeXHcn42sEcG48ww');
-              if (!await launchUrl(_url)) {
-                throw 'Could not launch $_url';
-              }
+              // final Uri url =
+              //     Uri.parse('https://buy.stripe.com/test_7sIeXHcn42sEcG48ww');
+              // if (!await launchUrl(url)) {
+              //   throw 'Could not launch $url';
+              // }
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => Payment(300)));
             },
             child: const Text(
               '立即訂票',

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'pages/schlossNeuschwanstein_item.dart';
 import 'pages/train_page.dart';
 
@@ -9,7 +10,7 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       home: MainPage(),
     );
   }
@@ -31,8 +32,8 @@ class _MainPageState extends State<MainPage> {
       ),
       body: Column(
         children: [
-          SchlossNeuschwansteinPage(),
-          SizedBox(
+          const SchlossNeuschwansteinPage(),
+          const SizedBox(
             height: 20.0,
             // width: 150.0,
             child: Divider(

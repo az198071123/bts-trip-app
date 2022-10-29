@@ -1,7 +1,7 @@
+import 'package:Travami/pages/payment.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:url_launcher/url_launcher.dart';
 
 class SchlossNeuschwansteinPage extends StatefulWidget {
   const SchlossNeuschwansteinPage({Key? key}) : super(key: key);
@@ -83,11 +83,15 @@ class _SchlossNeuschwansteinPageState extends State<SchlossNeuschwansteinPage> {
           ),
           ElevatedButton(
             onPressed: () async {
-              final Uri url =
-                  Uri.parse('https://buy.stripe.com/test_7sIeXHcn42sEcG48ww');
-              if (!await launchUrl(url)) {
-                throw 'Could not launch $url';
-              }
+              // final Uri url =
+              //     Uri.parse('https://buy.stripe.com/test_7sIeXHcn42sEcG48ww');
+              // if (!await launchUrl(url)) {
+              //   throw 'Could not launch $url';
+              // }
+
+              // TODO: assign the amount
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => Payment(200)));
             },
             child: const Text(
               '立即訂票',
@@ -104,8 +108,6 @@ class _SchlossNeuschwansteinPageState extends State<SchlossNeuschwansteinPage> {
               var url = Uri.parse(
                   'https://intrasystem.card168.cc/pftest/BTS/order.php');
 
-              // Map data = {'name': 'kano'};
-              // var body = json.encode(data);
               var body = {
                 'name': 'kano',
                 'email': 'jerry.hong@arionlabs.com.tw'
