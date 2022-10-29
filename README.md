@@ -20,6 +20,9 @@ samples, guidance on mobile development, and a full API reference.
 # order api
 ```json
 POST  /api/order
+
+Content-Type: application/json
+
 {
     name: 'KANO',
     email: 'kano@arionlabs.com.tw'
