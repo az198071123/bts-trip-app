@@ -1,12 +1,14 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'package:url_launcher/url_launcher.dart';
-
 
 class SchlossNeuschwansteinPage extends StatefulWidget {
   const SchlossNeuschwansteinPage({Key? key}) : super(key: key);
 
   @override
-  State<SchlossNeuschwansteinPage> createState() => _SchlossNeuschwansteinPageState();
+  State<SchlossNeuschwansteinPage> createState() =>
+      _SchlossNeuschwansteinPageState();
 }
 
 class _SchlossNeuschwansteinPageState extends State<SchlossNeuschwansteinPage> {
@@ -81,13 +83,46 @@ class _SchlossNeuschwansteinPageState extends State<SchlossNeuschwansteinPage> {
           ),
           ElevatedButton(
             onPressed: () async {
-              final Uri _url = Uri.parse('https://buy.stripe.com/test_7sIeXHcn42sEcG48ww');
-              if (!await launchUrl(_url)) {
-                throw 'Could not launch $_url';
+              final Uri url =
+                  Uri.parse('https://buy.stripe.com/test_7sIeXHcn42sEcG48ww');
+              if (!await launchUrl(url)) {
+                throw 'Could not launch $url';
               }
             },
             child: const Text(
               '立即訂票',
+              style: TextStyle(
+                fontSize: 30.0,
+              ),
+            ),
+          ),
+          ElevatedButton(
+            onPressed: () async {
+              if (kDebugMode) {
+                print('api start');
+              }
+              var url = Uri.parse(
+                  'https://intrasystem.card168.cc/pftest/BTS/order.php');
+
+              // Map data = {'name': 'kano'};
+              // var body = json.encode(data);
+              var body = {
+                'name': 'kano',
+                'email': 'jerry.hong@arionlabs.com.tw'
+              };
+              var response = await http.post(
+                url,
+                body: body,
+              );
+
+              if (kDebugMode) {
+                print('Response status: ${response.statusCode}');
+                print('Response body: ${response.body}');
+                print('api end');
+              }
+            },
+            child: const Text(
+              'PINUS',
               style: TextStyle(
                 fontSize: 30.0,
               ),
