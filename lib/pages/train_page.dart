@@ -10,6 +10,14 @@ class _TrainPageState extends State<TrainPage> {
   String? from = 'munich';
   String? to = 'neuschwanstein';
 
+  List<DropdownMenuItem<String>> formItems = [
+    const DropdownMenuItem(value: 'munich', child: Text('慕尼黑')),
+  ];
+
+  List<DropdownMenuItem<String>> toItems = const [
+    DropdownMenuItem(value: 'neuschwanstein', child: Text('新天鵝堡')),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,9 +35,7 @@ class _TrainPageState extends State<TrainPage> {
               DropdownButton(
                 style: const TextStyle(fontSize: 20.0, color: Colors.black),
                 value: from,
-                items: const [
-                  DropdownMenuItem(value: 'munich', child: Text('慕尼黑')),
-                ],
+                items: formItems,
                 onChanged: (String? value) {
                   if (value == null) return;
                   setState(() {
@@ -48,10 +54,7 @@ class _TrainPageState extends State<TrainPage> {
               DropdownButton(
                 style: const TextStyle(fontSize: 20.0, color: Colors.black),
                 value: to,
-                items: const [
-                  DropdownMenuItem(
-                      value: 'neuschwanstein', child: Text('新天鵝堡')),
-                ],
+                items: toItems,
                 onChanged: (String? value) {
                   if (value == null) return;
                   setState(() {
@@ -68,8 +71,15 @@ class _TrainPageState extends State<TrainPage> {
               // if (!await launchUrl(url)) {
               //   throw 'Could not launch $url';
               // }
+              double amount = 0;
+              switch (from) {
+                case 'munich':
+                  amount = 999; // TODO
+                  break;
+                default:
+              }
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => Payment(300)));
+                  MaterialPageRoute(builder: (context) => Payment(amount)));
             },
             child: const Text(
               '立即訂票',

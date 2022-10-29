@@ -32,9 +32,10 @@ class _SchlossNeuschwansteinPageState extends State<SchlossNeuschwansteinPage> {
             height: 20,
           ),
           Row(
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               const Text(
-                '人數: ',
+                '人數:  ',
                 style: TextStyle(fontSize: 20.0),
               ),
               DropdownButton(
@@ -54,33 +55,34 @@ class _SchlossNeuschwansteinPageState extends State<SchlossNeuschwansteinPage> {
                   });
                 },
               ),
-              Text(
-                '日期: ${date.year}/${date.month}/${date.day}',
-                style: const TextStyle(fontSize: 20.0),
-              ),
-              OutlinedButton(
-                onPressed: () async {
-                  DateTime? newDate = await showDatePicker(
-                      context: context,
-                      initialDate: date,
-                      firstDate: date,
-                      lastDate: date.add(const Duration(days: 60)));
-
-                  if (newDate == null) return;
-
-                  setState(() {
-                    date = newDate;
-                  });
-                },
-                child: const Text(
-                  '...',
-                  style: TextStyle(
-                    fontSize: 20.0,
-                  ),
-                ),
-              ),
             ],
           ),
+          Row(mainAxisAlignment: MainAxisAlignment.start, children: [
+            const Text(
+              '日期:  ',
+              style: TextStyle(fontSize: 20.0),
+            ),
+            OutlinedButton(
+              onPressed: () async {
+                DateTime? newDate = await showDatePicker(
+                    context: context,
+                    initialDate: date,
+                    firstDate: date,
+                    lastDate: date.add(const Duration(days: 60)));
+
+                if (newDate == null) return;
+                setState(() {
+                  date = newDate;
+                });
+              },
+              child: Text(
+                '${date.year}/${date.month}/${date.day}',
+                style: const TextStyle(
+                  fontSize: 20.0,
+                ),
+              ),
+            ),
+          ]),
           ElevatedButton(
             onPressed: () async {
               // final Uri url =
