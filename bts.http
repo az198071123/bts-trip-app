@@ -1,0 +1,17 @@
+POST https://intrasystem.card168.cc/pftest/BTS/order.php
+content-type: application/json
+
+{
+    "name": "KANO",
+    "email": "jerry.hong@arionlabs.com.tw"
+}
+
+# $obj -> name,
+# $info -> email,
+# $info -> stripeCode,
+# $info -> date,
+# $info -> time,
+# $info -> adult,
+# $info -> children,
+# $info -> price,
+# $info -> fee
