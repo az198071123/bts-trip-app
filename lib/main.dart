@@ -22,7 +22,6 @@ class MyApp extends StatelessWidget {
   }
 }
 
-
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
 
@@ -39,26 +38,26 @@ class _MainPageState extends State<MainPage> {
     return Container(
       child: Column(
         children: [
-          Text(
+          const Text(
             '新天鵝堡夢幻半日遊',
             style: TextStyle(fontSize: 30.0),
           ),
-          Center(
+          const Center(
             child: Image(image: AssetImage('images/SchlossNeuschwanstein.png')),
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           Row(
             children: [
-              Text(
+              const Text(
                 '人數: ',
                 style: TextStyle(fontSize: 20.0),
               ),
               DropdownButton(
-                style: TextStyle(fontSize: 20.0, color: Colors.black),
+                style: const TextStyle(fontSize: 20.0, color: Colors.black),
                 value: peopleCount,
-                items: [
+                items: const [
                   DropdownMenuItem(value: 1, child: Text('1')),
                   DropdownMenuItem(value: 2, child: Text('2')),
                   DropdownMenuItem(value: 3, child: Text('3')),
@@ -74,7 +73,7 @@ class _MainPageState extends State<MainPage> {
               ),
               Text(
                 '日期: ${date.year}/${date.month}/${date.day}',
-                style: TextStyle(fontSize: 20.0),
+                style: const TextStyle(fontSize: 20.0),
               ),
               OutlinedButton(
                 onPressed: () async {
@@ -82,7 +81,7 @@ class _MainPageState extends State<MainPage> {
                       context: context,
                       initialDate: date,
                       firstDate: date,
-                      lastDate: date.add(Duration(days: 60)));
+                      lastDate: date.add(const Duration(days: 60)));
 
                   if (newDate == null) return;
 
@@ -90,7 +89,7 @@ class _MainPageState extends State<MainPage> {
                     date = newDate;
                   });
                 },
-                child: Text(
+                child: const Text(
                   '...',
                   style: TextStyle(
                     fontSize: 20.0,
@@ -101,7 +100,7 @@ class _MainPageState extends State<MainPage> {
           ),
           ElevatedButton(
             onPressed: () {},
-            child: Text(
+            child: const Text(
               '立即訂票',
               style: TextStyle(
                 fontSize: 30.0,
