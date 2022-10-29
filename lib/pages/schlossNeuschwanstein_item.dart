@@ -1,7 +1,8 @@
-import 'package:Travami/pages/payment.dart';
+import 'package:Travami/pages/payment_page.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:intl/intl.dart';
 
 class SchlossNeuschwansteinPage extends StatefulWidget {
   const SchlossNeuschwansteinPage({Key? key}) : super(key: key);
@@ -76,7 +77,7 @@ class _SchlossNeuschwansteinPageState extends State<SchlossNeuschwansteinPage> {
                 });
               },
               child: Text(
-                '${date.year}/${date.month}/${date.day}',
+                DateFormat("yyyy-MM-dd").format(date),
                 style: const TextStyle(
                   fontSize: 20.0,
                 ),
@@ -93,7 +94,7 @@ class _SchlossNeuschwansteinPageState extends State<SchlossNeuschwansteinPage> {
 
               // TODO: assign the amount
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => Payment(200)));
+                  MaterialPageRoute(builder: (context) => PaymentPage(200)));
             },
             child: const Text(
               '立即訂票',

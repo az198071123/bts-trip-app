@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
-class Payment extends StatefulWidget {
+class PaymentPage extends StatefulWidget {
   double amount = 0;
-  Payment(this.amount);
+  PaymentPage(this.amount);
   @override
-  State<Payment> createState() => _PaymentState(amount);
+  State<PaymentPage> createState() => _PaymentPageState(amount);
 }
 
-class _PaymentState extends State<Payment> {
+class _PaymentPageState extends State<PaymentPage> {
   double amount = 0;
-  _PaymentState(this.amount);
+  _PaymentPageState(this.amount);
 
   @override
   Widget build(BuildContext context) {

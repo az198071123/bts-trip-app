@@ -1,5 +1,6 @@
-import 'package:Travami/pages/payment.dart';
+import 'package:Travami/pages/payment_page.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class TrainPage extends StatefulWidget {
   @override
@@ -9,6 +10,7 @@ class TrainPage extends StatefulWidget {
 class _TrainPageState extends State<TrainPage> {
   String? from = 'munich';
   String? to = 'neuschwanstein';
+  DateTime date = DateTime.now();
 
   List<DropdownMenuItem<String>> formItems = [
     const DropdownMenuItem(value: 'munich', child: Text('慕尼黑')),
@@ -26,6 +28,38 @@ class _TrainPageState extends State<TrainPage> {
       ),
       body: Column(
         children: [
+          Row(mainAxisAlignment: MainAxisAlignment.start, children: [
+            const Text(
+              '選擇日期:  ',
+              style: TextStyle(fontSize: 20.0),
+            ),
+            OutlinedButton(
+              onPressed: () async {
+                DateTime? newDate = await showDatePicker(
+                    context: context,
+                    initialDate: date,
+                    firstDate: date,
+                    lastDate: date.add(const Duration(days: 60)));
+                if (newDate == null) return;
+
+                final timeOfDay = await showTimePicker(
+                    context: context, initialTime: TimeOfDay.now());
+
+                if (timeOfDay == null) return;
+
+                setState(() {
+                  date = DateTime(newDate.year, newDate.month, newDate.day,
+                      timeOfDay.hour, newDate.minute);
+                });
+              },
+              child: Text(
+                DateFormat("yyyy-MM-dd HH:mm:ss").format(date),
+                style: const TextStyle(
+                  fontSize: 20.0,
+                ),
+              ),
+            ),
+          ]),
           Row(
             children: [
               const Text(
@@ -79,7 +113,7 @@ class _TrainPageState extends State<TrainPage> {
                 default:
               }
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => Payment(amount)));
+                  MaterialPageRoute(builder: (context) => PaymentPage(amount)));
             },
             child: const Text(
               '立即訂票',
