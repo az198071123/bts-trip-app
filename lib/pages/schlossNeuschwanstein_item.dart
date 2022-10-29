@@ -40,6 +40,10 @@ class _SchlossNeuschwansteinPageState extends State<SchlossNeuschwansteinPage> {
                 style: TextStyle(fontSize: 20.0),
               ),
               DropdownButton(
+                icon: const Icon(
+                  Icons.people,
+                  size: 24.0,
+                ),
                 style: const TextStyle(fontSize: 20.0, color: Colors.black),
                 value: peopleCount,
                 items: const [
@@ -63,7 +67,11 @@ class _SchlossNeuschwansteinPageState extends State<SchlossNeuschwansteinPage> {
               '日期:  ',
               style: TextStyle(fontSize: 20.0),
             ),
-            OutlinedButton(
+            OutlinedButton.icon(
+              icon: const Icon(
+                Icons.date_range_outlined,
+                size: 24.0,
+              ),
               onPressed: () async {
                 DateTime? newDate = await showDatePicker(
                     context: context,
@@ -76,7 +84,7 @@ class _SchlossNeuschwansteinPageState extends State<SchlossNeuschwansteinPage> {
                   date = newDate;
                 });
               },
-              child: Text(
+              label: Text(
                 DateFormat("yyyy-MM-dd").format(date),
                 style: const TextStyle(
                   fontSize: 20.0,

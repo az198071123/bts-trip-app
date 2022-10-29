@@ -33,7 +33,11 @@ class _TrainPageState extends State<TrainPage> {
               '選擇日期:  ',
               style: TextStyle(fontSize: 20.0),
             ),
-            OutlinedButton(
+            OutlinedButton.icon(
+              icon: const Icon(
+                Icons.date_range_outlined,
+                size: 24.0,
+              ),
               onPressed: () async {
                 DateTime? newDate = await showDatePicker(
                     context: context,
@@ -52,7 +56,7 @@ class _TrainPageState extends State<TrainPage> {
                       timeOfDay.hour, newDate.minute);
                 });
               },
-              child: Text(
+              label: Text(
                 DateFormat("yyyy-MM-dd HH:mm:ss").format(date),
                 style: const TextStyle(
                   fontSize: 20.0,
