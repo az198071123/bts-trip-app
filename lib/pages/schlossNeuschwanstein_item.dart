@@ -101,8 +101,10 @@ class _SchlossNeuschwansteinPageState extends State<SchlossNeuschwansteinPage> {
               // }
 
               // TODO: assign the amount
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => PaymentPage(200)));
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const PaymentPage(amount: 200)));
             },
             child: const Text(
               '立即訂票',
