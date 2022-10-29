@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 void main() {
   runApp(const MyApp());
@@ -100,7 +101,12 @@ class _MainPageState extends State<MainPage> {
             ],
           ),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () async {
+              final Uri _url = Uri.parse('https://buy.stripe.com/test_7sIeXHcn42sEcG48ww');
+              if (!await launchUrl(_url)) {
+                throw 'Could not launch $_url';
+              }
+            },
             child: const Text(
               '立即訂票',
               style: TextStyle(
