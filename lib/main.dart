@@ -1,27 +1,57 @@
 import 'package:flutter/material.dart';
 import 'pages/schlossNeuschwanstein_item.dart';
+import 'pages/train_page.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-        // backgroundColor: Color(0xFFFFCC00),
-        appBar: AppBar(
-          title: const Center(child: Text('Midas Travel')),
-        ),
-        body: Column(
-          children: const [
-            SchlossNeuschwansteinPage(),
-          ],
-        ),
+      home: MainPage(),
+    );
+  }
+}
+
+class MainPage extends StatefulWidget {
+  const MainPage({Key? key}) : super(key: key);
+
+  @override
+  State<MainPage> createState() => _MainPageState();
+}
+
+class _MainPageState extends State<MainPage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Center(child: Text('Midas Travel')),
+      ),
+      body: Column(
+        children: [
+          SchlossNeuschwansteinPage(),
+          SizedBox(
+            height: 20.0,
+            // width: 150.0,
+            child: Divider(
+              color: Colors.teal,
+            ),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => TrainPage()));
+            },
+            child: const Text(
+              '前往火車訂票',
+              style: TextStyle(
+                fontSize: 30.0,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
