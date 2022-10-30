@@ -15,3 +15,12 @@ content-type: application/json
 # $info -> children,
 # $info -> price,
 # $info -> fee
+
+###
+
+POST https://intrasystem.card168.cc/pftest/BTS/order.php
+Content-Type: application/x-www-form-urlencoded
+
+email=pinus@uuss.net
+
+###

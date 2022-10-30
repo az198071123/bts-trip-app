@@ -21,16 +21,15 @@ class NewSchlossNeuschwansteinPage extends StatefulWidget {
 
 class _NewSchlossNeuschwansteinPageState
     extends State<NewSchlossNeuschwansteinPage> {
-
   DateTime _date = DateTime.now();
   DateTime _time = DateTime.now();
   String _name = '';
   String _email = '';
   int _adult = 1;
   int _children = 0;
-  double _price = 675;
+  final double _price = 675;
 
-  String _where = '新天鵝堡';
+  final String _where = '新天鵝堡';
 
   @override
   Widget build(BuildContext context) {
@@ -97,7 +96,8 @@ class _NewSchlossNeuschwansteinPageState
                         Icons.people,
                         size: 24.0,
                       ),
-                      style: const TextStyle(fontSize: 20.0, color: Colors.black),
+                      style:
+                          const TextStyle(fontSize: 20.0, color: Colors.black),
                       value: _adult,
                       items: const [
                         DropdownMenuItem(value: 1, child: Text('1')),
@@ -127,7 +127,8 @@ class _NewSchlossNeuschwansteinPageState
                         Icons.people,
                         size: 24.0,
                       ),
-                      style: const TextStyle(fontSize: 20.0, color: Colors.black),
+                      style:
+                          const TextStyle(fontSize: 20.0, color: Colors.black),
                       value: _children,
                       items: const [
                         DropdownMenuItem(value: 0, child: Text('0')),
@@ -192,11 +193,13 @@ class _NewSchlossNeuschwansteinPageState
                       size: 24.0,
                     ),
                     onPressed: () async {
-                      TimeOfDay? newTime  = await showTimePicker(context: context, initialTime: TimeOfDay.now());
+                      TimeOfDay? newTime = await showTimePicker(
+                          context: context, initialTime: TimeOfDay.now());
 
                       if (newTime == null) return;
                       setState(() {
-                        _time = DateTime(_date.year, _date.month, _date.day, newTime.hour, newTime.minute);
+                        _time = DateTime(_date.year, _date.month, _date.day,
+                            newTime.hour, newTime.minute);
                       });
                     },
                     label: Text(
@@ -222,14 +225,14 @@ class _NewSchlossNeuschwansteinPageState
 
                       var order = OrderService();
                       var orderId = await order.bookTicket(
-                          name: this._name,
-                          email: this._email,
+                          name: _name,
+                          email: _email,
                           date: DateFormat("yyyy-MM-dd").format(_date),
                           time: DateFormat("HH:mm").format(_date),
-                          adult: this._adult,
-                          children: this._children,
-                          where: this._where,
-                          price: this._price);
+                          adult: _adult,
+                          children: _children,
+                          where: _where,
+                          price: _price);
                       EasyLoading.showSuccess('Great Success!');
 
                       print(orderId);

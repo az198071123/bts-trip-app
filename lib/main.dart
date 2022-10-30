@@ -1,4 +1,5 @@
 import 'package:Travami/pages/select_place_page.dart';
+import 'package:Travami/services/subscribe_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:matomo_tracker/matomo_tracker.dart';
@@ -30,6 +31,8 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> with TraceableClientMixin {
+  String email = '';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,10 +40,10 @@ class _MainPageState extends State<MainPage> with TraceableClientMixin {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text('Midas Travel'),
+            const Text('Midas Travel'),
             IconButton(
                 iconSize: 20.0,
-                icon: Icon(Icons.share),
+                icon: const Icon(Icons.share),
                 onPressed: () async {
                   await Share.share(
                       'Travami \n${'https://intrasystem.card168.cc/pftest/BTS/'}');
@@ -50,7 +53,7 @@ class _MainPageState extends State<MainPage> with TraceableClientMixin {
       ),
       body: SingleChildScrollView(
         child: Column(
-          children: [
+          children: const [
             SelectPlacePage(),
             SizedBox(
               height: 20.0,
@@ -60,6 +63,62 @@ class _MainPageState extends State<MainPage> with TraceableClientMixin {
               ),
             ),
           ],
+        ),
+      ),
+      bottomNavigationBar: OutlinedButton.icon(
+        icon: const Icon(
+          Icons.notifications_active,
+          size: 24.0,
+        ),
+        onPressed: () async {
+          showDialog<String>(
+            context: context,
+            builder: (BuildContext context) => AlertDialog(
+              title: const Text('Enter your Email to subscribe us!'),
+              content: TextFormField(
+                decoration: const InputDecoration(
+                  border: UnderlineInputBorder(),
+                  labelText: 'email',
+                ),
+                onChanged: (String? value) {
+                  email = value ?? '';
+                },
+                validator: (String? value) {
+                  return null;
+                },
+              ),
+              actions: <Widget>[
+                TextButton(
+                  onPressed: () => Navigator.pop(context, 'Cancel'),
+                  child: const Text('Cancel'),
+                ),
+                TextButton(
+                  onPressed: () async {
+                    try {
+                      EasyLoading.show(
+                          status: 'Subscribing...',
+                          maskType: EasyLoadingMaskType.black);
+
+                      var sub = SubscribeService();
+                      await sub.subscribe(email: email);
+                      EasyLoading.showSuccess('Great Success!');
+                    } catch (e) {
+                      EasyLoading.showError('Failed with Error: $e');
+                      return;
+                    }
+                    Navigator.pop(context, 'OK');
+                  },
+                  child: const Text('Subscribe'),
+                ),
+              ],
+            ),
+          );
+        },
+        label: const Text(
+          'Subscribe!',
+          style: TextStyle(
+            fontSize: 20.0,
+          ),
         ),
       ),
     );
