@@ -1,4 +1,5 @@
 import 'package:Travami/pages/payment_page.dart';
+import 'package:Travami/pages/train_page.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -118,6 +119,25 @@ class _NewSchlossNeuschwansteinPageState
                 },
                 child: const Text(
                   '立即訂票',
+                  style: TextStyle(
+                    fontSize: 30.0,
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 20.0,
+                // width: 150.0,
+                child: Divider(
+                  color: Colors.teal,
+                ),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => TrainPage()));
+                },
+                child: const Text(
+                  '前往火車訂票',
                   style: TextStyle(
                     fontSize: 30.0,
                   ),

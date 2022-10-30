@@ -1,8 +1,6 @@
 import 'package:Travami/pages/select_place_page.dart';
 import 'package:flutter/material.dart';
 
-import 'pages/train_page.dart';
-
 void main() {
   runApp(MyApp());
 }
@@ -32,25 +30,13 @@ class _MainPageState extends State<MainPage> {
       ),
       body: SingleChildScrollView(
         child: Column(
-          children: [
+          children: const [
             SelectPlacePage(),
-            const SizedBox(
+            SizedBox(
               height: 20.0,
               // width: 150.0,
               child: Divider(
                 color: Colors.teal,
-              ),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => TrainPage()));
-              },
-              child: const Text(
-                '前往火車訂票',
-                style: TextStyle(
-                  fontSize: 30.0,
-                ),
               ),
             ),
           ],
