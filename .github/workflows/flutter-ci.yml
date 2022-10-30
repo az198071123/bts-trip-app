@@ -51,5 +51,4 @@ jobs:
       # Upload generated apk to the artifacts.
       - uses: actions/upload-artifact@v3
         with:
-          name: Travami
           path: build\app\outputs\bundle\release\app-release.aab
