@@ -151,7 +151,7 @@ class _NewSchlossNeuschwansteinPageState
                       var order = OrderService();
                       var orderId = await order.bookTicket(
                           name: this._name,
-                          email: 'sheraium@gmail.com',
+                          email: this._email,
                           date: '2022-10-30',
                           time: '10:30',
                           adult: 1,
@@ -197,36 +197,6 @@ class _NewSchlossNeuschwansteinPageState
                     ),
                   ),
                 ),
-                ElevatedButton(
-                  onPressed: () async {
-                    if (kDebugMode) {
-                      print('api start');
-                    }
-                    var url = Uri.parse(
-                        'https://intrasystem.card168.cc/pftest/BTS/order.php');
-
-                    var body = {
-                      'name': 'kano',
-                      'email': 'jerry.hong@arionlabs.com.tw'
-                    };
-                    var response = await http.post(
-                      url,
-                      body: body,
-                    );
-
-                    if (kDebugMode) {
-                      print('Response status: ${response.statusCode}');
-                      print('Response body: ${response.body}');
-                      print('api end');
-                    }
-                  },
-                  child: const Text(
-                    'PINUS',
-                    style: TextStyle(
-                      fontSize: 30.0,
-                    ),
-                  ),
-                )
               ],
             ),
           ),
