@@ -1,8 +1,7 @@
 import 'package:Travami/pages/payment_page.dart';
 import 'package:Travami/pages/train_page.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:intl/intl.dart';
 
 import '../services/order_service.dart';
@@ -28,7 +27,7 @@ class _NewSchlossNeuschwansteinPageState
   String _name = '';
   String _email = '';
 
-  String _where = '新天鵝堡';
+  final String _where = '新天鵝堡';
 
   @override
   Widget build(BuildContext context) {
@@ -60,9 +59,11 @@ class _NewSchlossNeuschwansteinPageState
                       labelText: '姓名 *',
                     ),
                     onChanged: (String? value) {
-                      this._name = value ?? '';
+                      _name = value ?? '';
                     },
-                    validator: (String? value) {},
+                    validator: (String? value) {
+                      return null;
+                    },
                   ),
                 ),
                 Padding(
@@ -74,9 +75,11 @@ class _NewSchlossNeuschwansteinPageState
                       labelText: 'E-mail *',
                     ),
                     onChanged: (String? value) {
-                      this._email = value ?? '';
+                      _email = value ?? '';
                     },
-                    validator: (String? value) {},
+                    validator: (String? value) {
+                      return null;
+                    },
                   ),
                 ),
                 Row(
@@ -91,7 +94,8 @@ class _NewSchlossNeuschwansteinPageState
                         Icons.people,
                         size: 24.0,
                       ),
-                      style: const TextStyle(fontSize: 20.0, color: Colors.black),
+                      style:
+                          const TextStyle(fontSize: 20.0, color: Colors.black),
                       value: peopleCount,
                       items: const [
                         DropdownMenuItem(value: 1, child: Text('1')),
@@ -148,20 +152,27 @@ class _NewSchlossNeuschwansteinPageState
                     // }
 
                     try {
+                      EasyLoading.show(
+                          status: 'Ordering...',
+                          maskType: EasyLoadingMaskType.black);
+
                       var order = OrderService();
                       var orderId = await order.bookTicket(
-                          name: this._name,
-                          email: this._email,
+                          name: _name,
+                          email: _email,
                           date: '2022-10-30',
                           time: '10:30',
                           adult: 1,
                           children: 0,
-                          where: this._where,
+                          where: _where,
                           price: 675);
+                      EasyLoading.showSuccess('Great Success!');
 
                       print(orderId);
                     } catch (e) {
                       print(e);
+                      EasyLoading.showError('Failed with Error: $e');
+                      return;
                     }
 
                     // TODO: assign the amount

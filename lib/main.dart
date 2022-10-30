@@ -1,5 +1,6 @@
 import 'package:Travami/pages/select_place_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:matomo_tracker/matomo_tracker.dart';
 
 void main() {
@@ -13,8 +14,9 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: MainPage(),
+    return MaterialApp(
+      home: const MainPage(),
+      builder: EasyLoading.init(),
     );
   }
 }
