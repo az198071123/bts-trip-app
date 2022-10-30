@@ -2,6 +2,7 @@ import 'package:Travami/pages/select_place_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:matomo_tracker/matomo_tracker.dart';
+import 'package:share_plus/share_plus.dart';
 
 void main() {
   MatomoTracker.instance.initialize(
@@ -33,11 +34,23 @@ class _MainPageState extends State<MainPage> with TraceableClientMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Center(child: Text('Midas Travel')),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text('Midas Travel'),
+            IconButton(
+                iconSize: 20.0,
+                icon: Icon(Icons.share),
+                onPressed: () async {
+                  await Share.share(
+                      'Travami \n${'https://intrasystem.card168.cc/pftest/BTS/'}');
+                }),
+          ],
+        ),
       ),
       body: SingleChildScrollView(
         child: Column(
-          children: const [
+          children: [
             SelectPlacePage(),
             SizedBox(
               height: 20.0,
