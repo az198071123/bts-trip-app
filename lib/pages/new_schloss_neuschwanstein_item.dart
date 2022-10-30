@@ -21,13 +21,16 @@ class NewSchlossNeuschwansteinPage extends StatefulWidget {
 
 class _NewSchlossNeuschwansteinPageState
     extends State<NewSchlossNeuschwansteinPage> {
-  DateTime date = DateTime.now();
-  int peopleCount = 1;
 
+  DateTime _date = DateTime.now();
+  DateTime _time = DateTime.now();
   String _name = '';
   String _email = '';
+  int _adult = 1;
+  int _children = 0;
+  double _price = 675;
 
-  final String _where = '新天鵝堡';
+  String _where = '新天鵝堡';
 
   @override
   Widget build(BuildContext context) {
@@ -86,7 +89,7 @@ class _NewSchlossNeuschwansteinPageState
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     const Text(
-                      '人數:  ',
+                      '大人:  ',
                       style: TextStyle(fontSize: 20.0),
                     ),
                     DropdownButton(
@@ -94,20 +97,55 @@ class _NewSchlossNeuschwansteinPageState
                         Icons.people,
                         size: 24.0,
                       ),
-                      style:
-                          const TextStyle(fontSize: 20.0, color: Colors.black),
-                      value: peopleCount,
+                      style: const TextStyle(fontSize: 20.0, color: Colors.black),
+                      value: _adult,
                       items: const [
                         DropdownMenuItem(value: 1, child: Text('1')),
                         DropdownMenuItem(value: 2, child: Text('2')),
                         DropdownMenuItem(value: 3, child: Text('3')),
                         DropdownMenuItem(value: 4, child: Text('4')),
                         DropdownMenuItem(value: 5, child: Text('5')),
+                        DropdownMenuItem(value: 6, child: Text('6')),
+                        DropdownMenuItem(value: 7, child: Text('7')),
+                        DropdownMenuItem(value: 8, child: Text('8')),
+                        DropdownMenuItem(value: 9, child: Text('9')),
+                        DropdownMenuItem(value: 10, child: Text('10')),
                       ],
                       onChanged: (int? value) {
                         if (value == null) return;
                         setState(() {
-                          peopleCount = value;
+                          _adult = value;
+                        });
+                      },
+                    ),
+                    const Text(
+                      '小孩:  ',
+                      style: TextStyle(fontSize: 20.0),
+                    ),
+                    DropdownButton(
+                      icon: const Icon(
+                        Icons.people,
+                        size: 24.0,
+                      ),
+                      style: const TextStyle(fontSize: 20.0, color: Colors.black),
+                      value: _children,
+                      items: const [
+                        DropdownMenuItem(value: 0, child: Text('0')),
+                        DropdownMenuItem(value: 1, child: Text('1')),
+                        DropdownMenuItem(value: 2, child: Text('2')),
+                        DropdownMenuItem(value: 3, child: Text('3')),
+                        DropdownMenuItem(value: 4, child: Text('4')),
+                        DropdownMenuItem(value: 5, child: Text('5')),
+                        DropdownMenuItem(value: 6, child: Text('6')),
+                        DropdownMenuItem(value: 7, child: Text('7')),
+                        DropdownMenuItem(value: 8, child: Text('8')),
+                        DropdownMenuItem(value: 9, child: Text('9')),
+                        DropdownMenuItem(value: 10, child: Text('10')),
+                      ],
+                      onChanged: (int? value) {
+                        if (value == null) return;
+                        setState(() {
+                          _children = value;
                         });
                       },
                     ),
@@ -126,17 +164,43 @@ class _NewSchlossNeuschwansteinPageState
                     onPressed: () async {
                       DateTime? newDate = await showDatePicker(
                           context: context,
-                          initialDate: date,
-                          firstDate: date,
-                          lastDate: date.add(const Duration(days: 60)));
+                          initialDate: _date,
+                          firstDate: _date,
+                          lastDate: _date.add(const Duration(days: 60)));
 
                       if (newDate == null) return;
                       setState(() {
-                        date = newDate;
+                        _date = newDate;
                       });
                     },
                     label: Text(
-                      DateFormat("yyyy-MM-dd").format(date),
+                      DateFormat("yyyy-MM-dd").format(_date),
+                      style: const TextStyle(
+                        fontSize: 20.0,
+                      ),
+                    ),
+                  ),
+                ]),
+                Row(mainAxisAlignment: MainAxisAlignment.start, children: [
+                  const Text(
+                    '日期:  ',
+                    style: TextStyle(fontSize: 20.0),
+                  ),
+                  OutlinedButton.icon(
+                    icon: const Icon(
+                      Icons.access_time_filled,
+                      size: 24.0,
+                    ),
+                    onPressed: () async {
+                      TimeOfDay? newTime  = await showTimePicker(context: context, initialTime: TimeOfDay.now());
+
+                      if (newTime == null) return;
+                      setState(() {
+                        _time = DateTime(_date.year, _date.month, _date.day, newTime.hour, newTime.minute);
+                      });
+                    },
+                    label: Text(
+                      DateFormat("HH:mm").format(_time),
                       style: const TextStyle(
                         fontSize: 20.0,
                       ),
@@ -158,14 +222,14 @@ class _NewSchlossNeuschwansteinPageState
 
                       var order = OrderService();
                       var orderId = await order.bookTicket(
-                          name: _name,
-                          email: _email,
-                          date: '2022-10-30',
-                          time: '10:30',
-                          adult: 1,
-                          children: 0,
-                          where: _where,
-                          price: 675);
+                          name: this._name,
+                          email: this._email,
+                          date: DateFormat("yyyy-MM-dd").format(_date),
+                          time: DateFormat("HH:mm").format(_date),
+                          adult: this._adult,
+                          children: this._children,
+                          where: this._where,
+                          price: this._price);
                       EasyLoading.showSuccess('Great Success!');
 
                       print(orderId);
