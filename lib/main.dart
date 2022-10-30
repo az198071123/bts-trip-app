@@ -1,6 +1,6 @@
+import 'package:Travami/pages/select_place_page.dart';
 import 'package:flutter/material.dart';
 
-import 'pages/schlossNeuschwanstein_item.dart';
 import 'pages/train_page.dart';
 
 void main() {
@@ -32,7 +32,8 @@ class _MainPageState extends State<MainPage> {
       ),
       body: Column(
         children: [
-          const SchlossNeuschwansteinPage(),
+          // const SchlossNeuschwansteinPage(),
+          SelectPlacePage(),
           const SizedBox(
             height: 20.0,
             // width: 150.0,
