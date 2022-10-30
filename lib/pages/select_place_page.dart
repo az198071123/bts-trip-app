@@ -1,4 +1,4 @@
-import 'package:Travami/pages/schlossNeuschwanstein_item.dart';
+import 'package:Travami/pages/new_schloss_neuschwanstein_item.dart';
 import 'package:flutter/material.dart';
 
 class SelectPlacePage extends StatelessWidget {
@@ -46,7 +46,9 @@ class SelectPlacePage extends StatelessWidget {
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) =>
-                                          const SchlossNeuschwansteinPage()));
+                                          const NewSchlossNeuschwansteinPage(
+                                              title: '新天鵝堡夢幻半日遊',
+                                              img: 'assets/images/Img.png')));
                             },
                             child: Container(
                                 width: 320,
@@ -96,7 +98,10 @@ class SelectPlacePage extends StatelessWidget {
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) =>
-                                          const SchlossNeuschwansteinPage()));
+                                          const NewSchlossNeuschwansteinPage(
+                                              title: '巴黎罗浮宫博物馆快速通關門票',
+                                              img:
+                                                  'assets/images/Louvre1.png')));
                             },
                             child: Container(
                                 width: 320,
@@ -131,7 +136,10 @@ class SelectPlacePage extends StatelessWidget {
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) =>
-                                          const SchlossNeuschwansteinPage()));
+                                          const NewSchlossNeuschwansteinPage(
+                                              title: '圣米歇尔山博物馆門票',
+                                              img:
+                                                  'assets/images/Montsaintmichel1.png')));
                             },
                             child: Container(
                                 width: 320,
@@ -166,7 +174,10 @@ class SelectPlacePage extends StatelessWidget {
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) =>
-                                          const SchlossNeuschwansteinPage()));
+                                          const NewSchlossNeuschwansteinPage(
+                                              title: '圣米歇尔山博物馆門票',
+                                              img:
+                                                  'assets/images/Villefranchebay1.png')));
                             },
                             child: Container(
                                 width: 320,
