@@ -30,30 +30,31 @@ class _MainPageState extends State<MainPage> {
       appBar: AppBar(
         title: const Center(child: Text('Midas Travel')),
       ),
-      body: Column(
-        children: [
-          // const SchlossNeuschwansteinPage(),
-          SelectPlacePage(),
-          const SizedBox(
-            height: 20.0,
-            // width: 150.0,
-            child: Divider(
-              color: Colors.teal,
-            ),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => TrainPage()));
-            },
-            child: const Text(
-              '前往火車訂票',
-              style: TextStyle(
-                fontSize: 30.0,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            SelectPlacePage(),
+            const SizedBox(
+              height: 20.0,
+              // width: 150.0,
+              child: Divider(
+                color: Colors.teal,
               ),
             ),
-          ),
-        ],
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => TrainPage()));
+              },
+              child: const Text(
+                '前往火車訂票',
+                style: TextStyle(
+                  fontSize: 30.0,
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
