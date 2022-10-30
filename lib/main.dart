@@ -1,7 +1,12 @@
 import 'package:Travami/pages/select_place_page.dart';
 import 'package:flutter/material.dart';
+import 'package:matomo_tracker/matomo_tracker.dart';
 
 void main() {
+  MatomoTracker.instance.initialize(
+    siteId: 1,
+    url: 'https://tripptheworld.matomo.cloud/matomo.php',
+  );
   runApp(MyApp());
 }
 
@@ -21,7 +26,7 @@ class MainPage extends StatefulWidget {
   State<MainPage> createState() => _MainPageState();
 }
 
-class _MainPageState extends State<MainPage> {
+class _MainPageState extends State<MainPage> with TraceableClientMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,4 +49,10 @@ class _MainPageState extends State<MainPage> {
       ),
     );
   }
+
+  @override
+  String get traceName => 'Created MainPage'; // optional
+
+  @override
+  String get traceTitle => 'Midas Travel';
 }
