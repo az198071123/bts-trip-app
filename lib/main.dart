@@ -1,17 +1,9 @@
-import 'package:Travami/pages/select_place_page.dart';
+import 'package:Travami/pages/country_page.dart';
 import 'package:Travami/services/subscribe_service.dart';
-import 'package:Travami/services/g2rail-client.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:matomo_tracker/matomo_tracker.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:http/http.dart' as http;
-
-var client = GrailApiClient(
-    httpClient: http.Client(),
-    baseUrl: "http://alpha.api.g2rail.com",
-    apiKey: "fa656e6b99d64f309d72d6a8e7284953",
-    secret: "9a52b1f7-7c96-4305-8569-1016a55048bc");
 
 void main() {
   MatomoTracker.instance.initialize(
@@ -19,8 +11,6 @@ void main() {
     url: 'https://tripptheworld.matomo.cloud/matomo.php',
   );
   runApp(MyApp());
-
-  // var testResult = client.getResult("BERLIN", "MUNICH", "2022-11-02", "10:00", 1, 0);
 }
 
 class MyApp extends StatelessWidget {
@@ -64,7 +54,7 @@ class _MainPageState extends State<MainPage> with TraceableClientMixin {
       body: SingleChildScrollView(
         child: Column(
           children: const [
-            SelectPlacePage(),
+            CountryPage(),
             SizedBox(
               height: 20.0,
               // width: 150.0,
