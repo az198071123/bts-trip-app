@@ -20,7 +20,7 @@ class SelectPlacePage extends StatelessWidget {
               left: 20,
               child: SizedBox(
                   width: 320,
-                  height: 1050.3333740234375,
+                  height: 1300,
                   child: Stack(children: <Widget>[
                     const Positioned(
                         top: 0,
@@ -37,158 +37,83 @@ class SelectPlacePage extends StatelessWidget {
                               fontWeight: FontWeight.normal,
                               height: 1),
                         )),
-                    Positioned(
-                        top: 63,
-                        left: 0,
-                        child: InkWell(
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          const NewSchlossNeuschwansteinPage(
-                                              title: '新天鵝堡夢幻半日遊',
-                                              img: 'assets/images/Img.png')));
-                            },
-                            child: Container(
-                                width: 320,
-                                height: 213.3333282470703,
-                                decoration: const BoxDecoration(
-                                  image: DecorationImage(
-                                      image:
-                                          AssetImage('assets/images/Img.png'),
-                                      fit: BoxFit.fitWidth),
-                                )))),
-                    const Positioned(
-                        top: 39,
-                        left: 0,
-                        child: Text(
-                          '新天鵝堡夢幻半日遊',
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                              color: Color.fromRGBO(189, 68, 0, 1),
-                              fontFamily: 'Helvetica',
-                              fontSize: 16,
-                              letterSpacing:
-                                  0 /*percentages not used in flutter. defaulting to zero*/,
-                              fontWeight: FontWeight.normal,
-                              height: 1),
-                        )),
-                    const Positioned(
-                        top: 297,
-                        left: 0,
-                        child: Text(
-                          '巴黎罗浮宫博物馆快速通關門票',
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                              color: Color.fromRGBO(189, 68, 0, 1),
-                              fontFamily: 'Helvetica',
-                              fontSize: 16,
-                              letterSpacing:
-                                  0 /*percentages not used in flutter. defaulting to zero*/,
-                              fontWeight: FontWeight.normal,
-                              height: 1),
-                        )),
-                    Positioned(
-                        top: 321,
-                        left: 0,
-                        child: InkWell(
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          const NewSchlossNeuschwansteinPage(
-                                              title: '巴黎罗浮宫博物馆快速通關門票',
-                                              img:
-                                                  'assets/images/Louvre1.png')));
-                            },
-                            child: Container(
-                                width: 320,
-                                height: 213.3333282470703,
-                                decoration: const BoxDecoration(
-                                  image: DecorationImage(
-                                      image: AssetImage(
-                                          'assets/images/Louvre1.png'),
-                                      fit: BoxFit.fitWidth),
-                                )))),
-                    const Positioned(
-                        top: 555,
-                        left: 0,
-                        child: Text(
-                          '圣米歇尔山博物馆門票',
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                              color: Color.fromRGBO(189, 68, 0, 1),
-                              fontFamily: 'Helvetica',
-                              fontSize: 16,
-                              letterSpacing:
-                                  0 /*percentages not used in flutter. defaulting to zero*/,
-                              fontWeight: FontWeight.normal,
-                              height: 1),
-                        )),
-                    Positioned(
-                        top: 579,
-                        left: 0,
-                        child: InkWell(
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          const NewSchlossNeuschwansteinPage(
-                                              title: '圣米歇尔山博物馆門票',
-                                              img:
-                                                  'assets/images/Montsaintmichel1.png')));
-                            },
-                            child: Container(
-                                width: 320,
-                                height: 213.62637329101562,
-                                decoration: const BoxDecoration(
-                                  image: DecorationImage(
-                                      image: AssetImage(
-                                          'assets/images/Montsaintmichel1.png'),
-                                      fit: BoxFit.fitWidth),
-                                )))),
-                    const Positioned(
-                        top: 813,
-                        left: 0,
-                        child: Text(
-                          '圣米歇尔山博物馆門票',
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                              color: Color.fromRGBO(189, 68, 0, 1),
-                              fontFamily: 'Helvetica',
-                              fontSize: 16,
-                              letterSpacing:
-                                  0 /*percentages not used in flutter. defaulting to zero*/,
-                              fontWeight: FontWeight.normal,
-                              height: 1),
-                        )),
-                    Positioned(
-                        top: 837,
-                        left: 0,
-                        child: InkWell(
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          const NewSchlossNeuschwansteinPage(
-                                              title: '圣米歇尔山博物馆門票',
-                                              img:
-                                                  'assets/images/Villefranchebay1.png')));
-                            },
-                            child: Container(
-                                width: 320,
-                                height: 213.3333282470703,
-                                decoration: const BoxDecoration(
-                                  image: DecorationImage(
-                                      image: AssetImage(
-                                          'assets/images/Villefranchebay1.png'),
-                                      fit: BoxFit.fitWidth),
-                                )))),
+                    ...createItems(
+                        title: 'Paris to Bruges Day Trip',
+                        img: 'assets/images/bruges1.jpg',
+                        index: 0,
+                        context: context),
+                    ...createItems(
+                        title:
+                            'Independant Bruges Tour with Transportation from Paris',
+                        img: 'assets/images/bruges2.jpg',
+                        index: 1,
+                        context: context),
+                    // ...createItems(
+                    //     title: '圣米歇尔山博物馆門票',
+                    //     img: 'assets/images/Montsaintmichel1.png',
+                    //     index: 2,
+                    //     context: context),
+                    // ...createItems(
+                    //     title: '圣米歇尔山博物馆門票',
+                    //     img: 'assets/images/Villefranchebay1.png',
+                    //     index: 3,
+                    //     context: context),
                   ]))),
         ]));
   }
+}
+
+List<Positioned> createItems(
+    {required int index,
+    required String title,
+    required String img,
+    required context}) {
+  return [
+    createTitle(title: title, index: index),
+    createImg(title: title, img: img, index: index, context: context)
+  ];
+}
+
+Positioned createTitle({required int index, required String title}) {
+  print(39 + index * 300);
+  return Positioned(
+      top: 39 + index * 300,
+      left: 0,
+      child: Text(
+        title,
+        textAlign: TextAlign.left,
+        style: const TextStyle(
+            color: Color.fromRGBO(189, 68, 0, 1),
+            fontFamily: 'Helvetica',
+            fontSize: 16,
+            letterSpacing:
+                0 /*percentages not used in flutter. defaulting to zero*/,
+            fontWeight: FontWeight.normal,
+            height: 1),
+      ));
+}
+
+Positioned createImg(
+    {required int index,
+    required String title,
+    required String img,
+    required context}) {
+  return Positioned(
+      top: 63 + index * 300,
+      left: 0,
+      child: InkWell(
+          onTap: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) =>
+                        NewSchlossNeuschwansteinPage(title: title, img: img)));
+          },
+          child: Container(
+              width: 320,
+              height: 213.3333282470703,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage(img), fit: BoxFit.fitWidth),
+              ))));
 }
